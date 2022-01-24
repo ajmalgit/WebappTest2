@@ -1,0 +1,6 @@
+E:\ajmal\WebAppTest2\MVC_BusinessEntities1\bin\Debug\MVC_BusinessEntities1.dll
+E:\ajmal\WebAppTest2\MVC_BusinessEntities1\bin\Debug\MVC_BusinessEntities1.pdb
+E:\ajmal\WebAppTest2\MVC_BusinessEntities1\obj\Debug\MVC_BusinessEntities.csproj.AssemblyReference.cache
+E:\ajmal\WebAppTest2\MVC_BusinessEntities1\obj\Debug\MVC_BusinessEntities.csproj.CoreCompileInputs.cache
+E:\ajmal\WebAppTest2\MVC_BusinessEntities1\obj\Debug\MVC_BusinessEntities1.dll
+E:\ajmal\WebAppTest2\MVC_BusinessEntities1\obj\Debug\MVC_BusinessEntities1.pdb

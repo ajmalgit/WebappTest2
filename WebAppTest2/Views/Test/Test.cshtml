@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+}
+
+<h2>Test</h2>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="https://code.angularjs.org/1.3.0/angular.js"></script>
+<script type="text/javascript" src="https://rawgithub.com/vivendi/angular-datatables/master/src/angular-datatables.js"></script>
+<script type="text/javascript" src="https://rawgithub.com/vivendi/angular-datatables/master/src/angular-datatables.directive.js"></script>
+<script type="text/javascript" src="https://rawgithub.com/vivendi/angular-datatables/master/src/angular-datatables.factory.js"></script>
+<script type="text/javascript" src="https://rawgithub.com/vivendi/angular-datatables/master/src/angular-datatables.bootstrap.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.2.13/ng-file-upload.min.js"></script>
+<script type="text/javascript">
+    var app = angular.module('MyApp', ['datatables', 'ngFileUpload'])
+    app.controller('MyController', function ($scope, $http, Upload, $timeout) {
+      //  PopulateFiles();
+        $scope.ShowHide = false;
+        $scope.SelectFile = function (file) {
+            $scope.SelectedFile = file;
+        };
+        $scope.EditData = function (file) {
+            $scope.Id = file.Id;
+            $scope.Name = file.Name;
+            $scope.ShowHide = true;
+        };
+        $scope.Upload = function () {
+            Upload.upload({
+                url: 'Handler2.ashx?Id=' + $scope.Id + '&Name=' + $scope.Name,
+              //  url: 'Handler2.ashx?Id=' + $scope.Id + '&Name=' + $scope.Name,
+                data: {
+                    files: $scope.SelectedFile
+                }
+            }).then(function (response) {
+                $timeout(function () {
+                  //  PopulateFiles();
+                    $scope.ShowHide = false;
+                });
+            }, function (response) {
+                if (response.status > 0) {
+                    var errorMsg = response.status + ': ' + response.data;
+                    alert(errorMsg);
+                }
+            });
+        };
+        function PopulateFiles() {
+            $http.post("CS.aspx/GetFiles", { headers: { 'Content-Type': 'application/json'} })
+            .then(function (response) {
+                $scope.Files = JSON.parse(response.data.d);
+            }, function (response) {
+                $window.alert(response.responseText);
+            });
+        }
+    });
+</script>
+<div ng-app="MyApp" ng-controller="MyController">
+    <table  class="table table-bordered table-responsive">
+        <tr>
+            <td>Id</td>
+            <td><input type="text" readonly="readonly" ng-model="Id" /></td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" ng-model="Name" /></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="file" ngf-select="SelectFile($file)" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="button" value="Update" ng-click="Upload()" />
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div class="table table-bordered">
+        <table datatable="ng" class="table table-bordered table-responsive">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr dt-rows ng-repeat="file in Files">
+                    <td>{{file.Id}}</td>
+                    <td>{{file.Name}}</td>
+                    <td><img ng-src="{{file.Path}}" alt="{{file.Name}}.jpg" style="height: 100px; width: 100px" /></td>
+                    <td><input type="button" id="btnEdit" class="btn btn-primary" value="Edit" ng-click="EditData(file)" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

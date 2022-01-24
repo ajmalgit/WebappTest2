@@ -1,0 +1,9 @@
+E:\ajmal\WebAppTest2\MVC_DataAccessLayer2\bin\Debug\MVC_DataAccessLayer2.dll
+E:\ajmal\WebAppTest2\MVC_DataAccessLayer2\bin\Debug\MVC_DataAccessLayer2.pdb
+E:\ajmal\WebAppTest2\MVC_DataAccessLayer2\bin\Debug\MVC_BusinessEntities1.dll
+E:\ajmal\WebAppTest2\MVC_DataAccessLayer2\bin\Debug\MVC_BusinessEntities1.pdb
+E:\ajmal\WebAppTest2\MVC_DataAccessLayer2\obj\Debug\MVC_DataAccessLayer2.csproj.AssemblyReference.cache
+E:\ajmal\WebAppTest2\MVC_DataAccessLayer2\obj\Debug\MVC_DataAccessLayer2.csproj.CoreCompileInputs.cache
+E:\ajmal\WebAppTest2\MVC_DataAccessLayer2\obj\Debug\MVC_DataAccessLayer2.csproj.CopyComplete
+E:\ajmal\WebAppTest2\MVC_DataAccessLayer2\obj\Debug\MVC_DataAccessLayer2.dll
+E:\ajmal\WebAppTest2\MVC_DataAccessLayer2\obj\Debug\MVC_DataAccessLayer2.pdb

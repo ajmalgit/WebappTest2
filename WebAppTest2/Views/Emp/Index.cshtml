@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        GetCustomers();
+        $("#btnSearch").click(function () {
+            GetCustomers();
+        });
+    });
+    function GetCustomers() {
+        var table = $("#tblCustomers");
+        var customerId = $.trim($("#txtCustomerId").val());
+        $.getJSON('/Handler1.ashx?customerId=' + customerId + '&callback=?', function (result) {
+            table.find("tr:not(:first)").remove();
+            $.each(result, function (i, customer) {
+                var row = table[0].insertRow(-1);
+                $(row).append("<td />");
+                $(row).find("td").eq(0).html(customer.id);
+                $(row).append("<td />");
+                $(row).find("td").eq(1).html(customer.employeeName);
+                $(row).append("<td />");
+                $(row).find("td").eq(2).html(customer.mobile);
+                $(row).append("<td />");
+                $(row).find("td").eq(2).html(customer.address);
+            });
+        });
+    }
+    </script>
+    CustomerId:
+    <input type="text" id="txtCustomerId" />
+    <input type="button" id="btnSearch" value="Search" />
+    <hr />
+    <table id="tblCustomers" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <th style="width: 90px">
+                Customer Id
+            </th>
+            <th style="width: 120px">
+                Name
+            </th>
+            <th style="width: 90px">
+                Mobile
+            </th>
+            <th style="width: 90px">
+                Address
+            </th>
+        </tr>
+    </table>
+</body>
+</html>
+

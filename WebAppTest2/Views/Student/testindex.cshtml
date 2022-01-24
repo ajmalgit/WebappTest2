@@ -1,0 +1,212 @@
+﻿
+@{
+    ViewBag.Title = "testindex";
+}
+
+<h2>testindex</h2>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+
+        .table {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+        }
+
+            .table th {
+                background-color: #F7F7F7;
+                color: #333;
+                font-weight: bold;
+            }
+
+            .table th, .table td {
+                padding: 5px;
+                border: 1px solid #ccc;
+            }
+    </style>
+</head>
+<body>
+
+    <div ng-app="StudnetApp" ng-controller="stuCntr">
+        <!-- <script src="~/scripts/bootstrap.min.js"></script>
+        <script src="~/scripts/jquery-1.10.2.min.js"></script>
+           -->
+        <input type="submit" value="Add Student" ng-click="AddNewStudent()" />
+        <div id="dvStudnetDetails">
+            <table cellpadding="12" class="table table-bordered table-hover">
+                <tr>
+                    <td>
+                        <b>Id</b>
+                    </td>
+                    <td>
+                        <b>Student Name</b>
+                    </td>
+                    <td>
+                        <b>Address</b>
+                    </td>
+                    <td>
+                        <b>Mobile</b>
+                    </td>
+                    <td>
+                        <b>Manage</b>
+                    </td>
+                </tr>
+                <tr ng-repeat="stu in students">
+                    <td ng-show="aa">
+
+                        {{stu.id}}
+
+
+                    </td>
+                    <td>
+                        {{stu.id}}
+
+                        @*{{$index+1}}*@
+
+
+                    </td>
+                    <td ng-show="a">
+                        <input type="text" ng-model="stu.employeeName" />
+                    </td>
+                    <td ng-hide="a">
+
+                        {{stu.employeeName}}
+
+
+                    </td>
+                    <td ng-show="a">
+                        <input type="text" ng-model="stu.address" />
+                    </td>
+                    <td ng-hide="a">
+
+                        {{stu.address}}
+
+
+                    </td>
+                    <td ng-show="a">
+                        <input type="text" ng-model="stu.mobile" />
+                    </td>
+                    <td ng-hide="a">
+
+                        {{stu.mobile}}
+
+
+                    </td>
+                    <td>
+                        <span ng-hide="a" ng-click="a=!a">Edit</span>
+                        <span ng-show="a" ng-click="a=!a">Cancel</span>
+                        <span ng-show="a" ng-click="UpdateStudent(stu)">Update</span>
+                        <span ng-show="a" ng-click="GetSalary(stu)">ShowSal</span>
+                        <span ng-click="deleteStudent(stu,stu.id)">Delete</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="dvAddStudnet" ng-show="dvStudent">
+            <p class="dvTask">{{Action}} New Student</p>
+            <table>
+                <tr>
+                    <td>Name : </td>
+                    <td>
+                        <input type="text" id="txtName" ng-model="student.employeeName" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mobile : </td>
+                    <td>
+                        <input type="text" id="txtMobile" ng-model="student.mobile" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Address : </td>
+                    <td>
+                        <input type="text" id="txtAddress" ng-model="student.address" />
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="Submit" ng-click="AddStudnet(student)" />
+        </div>
+        <div>
+            <table id="tblSalary" class="table" cellpadding="0" cellspacing="0">
+                <tr>
+                    <th style="width:100px"> Id</th>
+                    @*<th style="width:100px"> Employee</th>*@
+                    <th style="width:150px">Salary</th>
+                    <th style="width:150px">Month</th>
+
+                    <th style="width:100px"></th>
+                </tr>
+                <tbody ng-repeat="m in salaries">
+          
+                    <tr ng-repeat="v in m.lstEmpsal">
+                        @*<td><span>{{m.id}}</span></td>*@
+
+                        <td><span>    {{$index+1}}</span></td>
+                        <!--      <td>               <span ng-hide="m.EditMode">{{m.employeeName}}</span>  </td>        -->
+
+                        <td>
+                            <span ng-hide="m.EditMode">{{v.EmpSal}}</span>
+
+                        </td>
+                        <td>
+                            <span ng-hide="m.EditMode">{{v.EmpSalMonth}}</span>
+
+                        </td>
+
+
+                        <!--  <span ng-click="GetSalaryn(salaries)">ShowSaln</span>-->
+
+                    </tr>
+                    
+
+                 
+                        <div id="pedidos_table_total">
+
+
+                        <p>Employee Name</p>   <p id="pedidos_table_item_price">{{EmpName}}<span>EmpCode:{{EmpCode}}</span></p>
+                        <p id="pedidos_table_item_name">TOTAL</p>  <p id="pedidos_table_item_price">{{sum}}$</p>
+                        
+                    </div>
+                </tbody>
+            </table>
+        
+
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js">
+
+    </script>
+
+    <!--
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+
+    -->
+    <script type="text/javascript" src="https://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+    <script src="~/AngularScript/StudentModel.js"></script>
+    <script src="~/AngularScript/StudentController.js"></script>
+
+
+    <script src="~/AngularScript/StudentService.js"></script>
+</body>
+</html>
+
+
+
